@@ -1,0 +1,99 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "glp1-health",
+  "version": "1.0.0",
+  "description": "Independent reference data on GLP-1 telehealth programs in the US: how glp1.health scores them, FDA warning-letter facts, the GLP-1 price index, and the glp1.health guides.",
+  "author": {
+    "name": "glp1.health",
+    "url": "https://www.glp1.health"
+  },
+  "homepage": "https://www.glp1.health/mcp",
+  "repository": "https://github.com/wegravel/glp1-mcp",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "glp1.health",
+        "shortDescription": "GLP-1 program research and data",
+        "longDescription": "glp1.health is an independent reference site about GLP-1 medications and the telehealth programs that offer them in the United States.\n\nAsk about a program and glp1.health returns what its review records: the medications it lists, its plans, its score out of 10 with each part of the score, whether the FDA has a warning letter on file for it, and when the facts were last checked. Ask for a ranking and it returns the glp1.health list in the same order as the website. Ask about cost and it returns the glp1.health price index, built from public data such as the CMS drug price surveys, with its date.\n\nIt can also find and read any glp1.health guide, so the answer quotes the page and links to it.\n\nCompounded GLP-1s are not FDA-approved: the FDA doesn't review their safety, effectiveness or quality before they're sold. glp1.health gives no medical advice. Talk to a licensed clinician about any medication decision.\n\nglp1.health reads data only. It needs no account and collects no health information.",
+        "developerName": "glp1.health",
+        "category": "Health",
+        "capabilities": [
+          "Program reviews and scores",
+          "Rankings",
+          "GLP-1 price index",
+          "FDA warning-letter facts",
+          "Guide search"
+        ],
+        "websiteURL": "https://www.glp1.health/mcp",
+        "supportURL": "https://www.glp1.health/press",
+        "privacyPolicyURL": "https://www.glp1.health/privacy-policy",
+        "termsOfServiceURL": "https://www.glp1.health/terms",
+        "defaultPrompt": [
+          "How does glp1.health score telehealth GLP-1 programs?",
+          "What does the glp1.health price index say about tirzepatide this month?",
+          "Does the FDA have a warning letter on file for this program?"
+        ],
+        "brandColor": "#183858",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "How the site scores programs",
+              "prompt": "How does glp1.health score GLP-1 telehealth programs?",
+              "tools_triggered": "glp1_about",
+              "expected_behavior": "Explains the 0-10 score and what each part counts for, says how glp1.health earns money, and links to the methodology page."
+            },
+            {
+              "description": "One program",
+              "prompt": "What does glp1.health say about the Embody program?",
+              "tools_triggered": "glp1_program",
+              "expected_behavior": "Returns the program's medications, plans, score with each part, the FDA warning-letter fact and the date checked, and links to the glp1.health review."
+            },
+            {
+              "description": "A ranking",
+              "prompt": "Show me glp1.health's ranking of compounded semaglutide programs.",
+              "tools_triggered": "glp1_rankings",
+              "expected_behavior": "Returns the ranked list in the same order as the glp1.health page, says that compounded GLP-1s are not FDA-approved, and links to the page."
+            },
+            {
+              "description": "Price index",
+              "prompt": "What does the glp1.health price index say about GLP-1 costs right now?",
+              "tools_triggered": "glp1_price_index",
+              "expected_behavior": "Returns the current index with its date and sources and links to the price index page."
+            },
+            {
+              "description": "Find and read a guide",
+              "prompt": "Find the glp1.health guide on missed doses and summarize it.",
+              "tools_triggered": "glp1_search, glp1_page",
+              "expected_behavior": "Finds the guide, reads it, summarizes it with a link, and tells the user to ask their clinician about their own dose."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Writing a prescription",
+              "prompt": "Prescribe me semaglutide."
+            },
+            {
+              "description": "Personal dosing advice",
+              "prompt": "How much tirzepatide should I inject this week?"
+            },
+            {
+              "description": "Unrelated request",
+              "prompt": "What's the weather in Miami tomorrow?"
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "glp1.health shows reference information. It does not sell, prescribe or deliver any medication, and it processes no payments in ChatGPT."
+      },
+      "publication": {
+        "countries": ["US"],
+        "release_notes": "First ChatGPT release: glp1.health program reviews and scores, rankings, the GLP-1 price index and the guides."
+      }
+    }
+  }
+}

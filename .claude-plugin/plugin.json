@@ -1,0 +1,21 @@
+{
+  "name": "glp1-health",
+  "version": "1.0.0",
+  "description": "GLP-1 telehealth programs in the US, with their prices, scores and FDA warning-letter facts, the GLP-1 price index, and the glp1.health guides. Free and read-only: no account, no key.",
+  "author": {
+    "name": "glp1.health",
+    "url": "https://www.glp1.health"
+  },
+  "homepage": "https://www.glp1.health/mcp",
+  "repository": "https://github.com/wegravel/glp1-mcp",
+  "license": "MIT",
+  "keywords": [
+    "glp1",
+    "glp-1",
+    "semaglutide",
+    "tirzepatide",
+    "telehealth",
+    "drug prices",
+    "mcp"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.wegravel/glp1-mcp",
+  "title": "glp1.health",
+  "description": "US GLP-1 telehealth programs, their prices and scores, the GLP-1 price index, and glp1.health guides. Free, no account.",
+  "version": "1.0.0",
+  "websiteUrl": "https://www.glp1.health/mcp",
+  "repository": {
+    "url": "https://github.com/wegravel/glp1-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://www.glp1.health/mcp"
+    }
+  ]
+}

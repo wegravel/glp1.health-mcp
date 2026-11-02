@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "glp1-health": {
+      "type": "http",
+      "url": "https://www.glp1.health/mcp"
+    }
+  }
+}
