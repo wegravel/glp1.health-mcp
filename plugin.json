@@ -14,7 +14,7 @@
     "com.openai": {
       "interface": {
         "displayName": "glp1.health",
-        "shortDescription": "GLP-1 program research and data",
+        "shortDescription": "GLP-1 program reviews and data",
         "longDescription": "glp1.health is an independent reference site about GLP-1 medications and the telehealth programs that offer them in the United States.\n\nAsk about a program and glp1.health returns what its review records: the medications it lists, its plans, its score out of 10 with each part of the score, whether the FDA has a warning letter on file for it, and when the facts were last checked. Ask for a ranking and it returns the glp1.health list in the same order as the website. Ask about cost and it returns the glp1.health price index, built from public data such as the CMS drug price surveys, with its date.\n\nIt can also find and read any glp1.health guide, so the answer quotes the page and links to it.\n\nCompounded GLP-1s are not FDA-approved: the FDA doesn't review their safety, effectiveness or quality before they're sold. glp1.health gives no medical advice. Talk to a licensed clinician about any medication decision.\n\nglp1.health reads data only. It needs no account and collects no health information.",
         "developerName": "glp1.health",
         "category": "Health",
@@ -57,7 +57,7 @@
               "description": "A ranking",
               "prompt": "Show me glp1.health's ranking of compounded semaglutide programs.",
               "tools_triggered": "glp1_rankings",
-              "expected_behavior": "Returns the ranked list in the same order as the glp1.health page, says that compounded GLP-1s are not FDA-approved, and links to the page."
+              "expected_behavior": "Returns the ranked list in the same order as the glp1.health page, with each program's monthly price for each medicine the page compares, says that compounded GLP-1s are not FDA-approved, and links to the page."
             },
             {
               "description": "Price index",

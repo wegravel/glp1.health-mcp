@@ -7,7 +7,10 @@ What each directory asks for, and the answers for glp1.health. The server needs 
 - [ ] Deploy the website with the public `/mcp` server, and check `https://www.glp1.health/mcp` in a browser (the page) and with the `curl` in the README (the tools).
 - [ ] Create the GitHub repository `wegravel/glp1-mcp` and push this folder.
 - [ ] Add the URL as a custom connector in Claude and as a developer-mode app in ChatGPT. Run every tool once in each.
-- [ ] Take 3 to 5 screenshots of real answers for the Claude carousel and put them in `screenshots/`.
+- [ ] Record a short demo video (a program, a ranking, the price index) at a link a reviewer can open. ChatGPT requires it.
+- [ ] Run `claude plugin validate --strict .` here. It must pass.
+
+Screenshots are for MCP Apps only (servers that draw a UI in the chat). This server returns text, so Claude needs none.
 
 ## Risk: prescription drugs
 
@@ -34,7 +37,9 @@ Bump `version` in `server.json`, `plugin.json` and both plugin folders on each r
 
 ## Claude: Connectors Directory
 
-Portal: [claude.ai/directory/manage](https://claude.ai/directory/manage) → **Submit new** → **MCP connector**. Guide: [Submit a connector](https://claude.com/docs/connectors/building/submission).
+Portal: [claude.ai/directory/manage](https://claude.ai/directory/manage) → **Submit new** → **MCP connector**. Guide: [Submit a connector](https://claude.com/docs/connectors/building/submission). Any paid Claude plan can submit. The portal saves each step in the browser.
+
+After you submit, an automatic scan checks the policy and lists the connector as a **Community** connector. Some submissions also get a review by a person. Status and feedback appear in the portal. Escalations: `mcp-review@anthropic.com`.
 
 | Step | Answer |
 | --- | --- |
@@ -52,9 +57,12 @@ Portal: [claude.ai/directory/manage](https://claude.ai/directory/manage) → **S
 | Use cases | Compare how glp1.health reviews programs, read a ranking, check the price index, read a guide. Reads data only. |
 | What users need | Nothing. No account. |
 | Authentication | None |
-| Data handling | Our own database. No health data collected. No sponsored placement: a referral fee does not change a score or a rank. |
-| Allowed link URIs | `https://www.glp1.health` |
-| Test & launch | No account needed. |
+| Data handling | Our own API and database. No personal health data collected. Sponsored content: none in the answers. The site earns referral fees, but the tools return no partner or sign-up link, and a fee does not change a score or a rank. |
+| Allowed link URIs | `https://www.glp1.health` (only for a connector that opens links; harmless to give) |
+| Test & launch | No account needed. Confirm you ran every tool as a custom connector in Claude. |
+| Compliance | Seven acknowledgments. All are required. |
+
+The directory policy counts healthcare as a high-risk use and asks for a clear disclosure to the user. The server instructions and `glp1_about` say that glp1.health gives no medical advice and that the user must talk to a licensed clinician.
 
 ### Carousel screenshots
 
@@ -67,6 +75,23 @@ PNG, at least 1000px wide, cropped to the app's answer, without the prompt. 3 to
 | `screenshots/3-price-index.png` | What does the glp1.health price index say about GLP-1 costs right now? |
 | `screenshots/4-guide.png` | Find the glp1.health guide on missed doses and summarize it. |
 
+## Claude: plugin directory
+
+The same portal also takes plugins. A plugin listed there reaches claude.ai, Cowork and Claude Code. This repository is the plugin: `.claude-plugin/plugin.json` and `.mcp.json`. Guide: [Submit a plugin](https://claude.com/docs/plugins/submit).
+
+1. Push this folder to the public GitHub repository `wegravel/glp1-mcp`.
+2. Run `claude plugin validate --strict .`.
+3. Portal → **Submit new** → **Plugin**, with the repository URL.
+4. Submit the server as a connector too (above). The portal pairs the two.
+
+Anthropic's official marketplace (`claude-plugins-official`) takes no submissions through the portal.
+
+Without any directory, a Claude Code user installs the plugin from this repository:
+
+```sh
+claude plugin install glp1-health --marketplace wegravel/glp1-mcp
+```
+
 ## ChatGPT: plugin directory
 
 Portal: [platform.openai.com/plugins](https://platform.openai.com/plugins) → **Upload new or existing plugin**. Guide: [Submission](https://developers.openai.com/apps-sdk/deploy/submission), [guidelines](https://developers.openai.com/apps-sdk/app-submission-guidelines).
@@ -75,13 +100,16 @@ Portal: [platform.openai.com/plugins](https://platform.openai.com/plugins) → *
 2. Build the ZIP: `./scripts/package-openai.sh`. Upload `dist/glp1-health-chatgpt.zip`.
 3. **Domain verification:** copy the token the portal shows. The website serves it as plain text at `https://www.glp1.health/.well-known/openai-apps-challenge` from the `OPENAI_APPS_CHALLENGE_TOKEN` environment variable. Set it in Coolify, redeploy, then click Verify.
 4. **MCP connection:** choose **No authentication**.
-5. **Review details:** no test account. Record a short demo video (a program, a ranking, the price index) and add its URL to `review.demo_recording_url` in `plugin.json`, then rebuild the ZIP.
-6. Fix any findings, then **Submit for review** and accept the attestations.
+5. **Review details:** no test account. Add the demo video's URL to `review.demo_recording_url` in `plugin.json` (required), then rebuild the ZIP. `plugin.json` already holds the 5 positive and 3 negative test cases; run each one in developer mode first.
+6. Fix any findings, then **Submit for review** and accept the attestations. Only one review runs at a time. The answer comes by email; to appeal, reply to it.
 7. After approval, select **Publish plugin**.
+
+OpenAI scans the server every day after that. After a change to the tools, ask for a new scan in the portal. The server's URL cannot change between versions.
 
 ### Rules that shaped the listing
 
 - No prices, no promotions, no program names and no comparisons in the listing text.
+- `displayName` and `shortDescription`: 30 characters or fewer. `longDescription`: 4,000 or fewer.
 - No links to checkout or sign-up pages in tool answers.
 - Country list: `["US"]`. The data covers US programs only.
 

@@ -1,0 +1,15 @@
+{
+  "name": "glp1health",
+  "description": "The glp1.health plugins for Claude Code.",
+  "owner": {
+    "name": "glp1.health",
+    "url": "https://www.glp1.health"
+  },
+  "plugins": [
+    {
+      "name": "glp1-health",
+      "source": "./",
+      "description": "GLP-1 telehealth programs in the US, their scores and prices, FDA warning-letter facts, the GLP-1 price index and the glp1.health guides. Free and read-only."
+    }
+  ]
+}
