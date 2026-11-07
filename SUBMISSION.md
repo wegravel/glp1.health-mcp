@@ -5,7 +5,7 @@ What each directory asks for, and the answers for glp1.health. The server needs 
 ## Before any submission
 
 - [ ] Deploy the website with the public `/mcp` server, and check `https://www.glp1.health/mcp` in a browser (the page) and with the `curl` in the README (the tools).
-- [ ] Create the GitHub repository `wegravel/glp1-mcp` and push this folder.
+- [x] Create the GitHub repository `wegravel/glp1.health-mcp` and push this folder.
 - [ ] Add the URL as a custom connector in Claude and as a developer-mode app in ChatGPT. Run every tool once in each.
 - [ ] Record a short demo video (a program, a ranking, the price index) at a link a reviewer can open. ChatGPT requires it.
 - [ ] Run `claude plugin validate --strict .` here. It must pass.
@@ -79,7 +79,7 @@ PNG, at least 1000px wide, cropped to the app's answer, without the prompt. 3 to
 
 The same portal also takes plugins. A plugin listed there reaches claude.ai, Cowork and Claude Code. This repository is the plugin: `.claude-plugin/plugin.json` and `.mcp.json`. Guide: [Submit a plugin](https://claude.com/docs/plugins/submit).
 
-1. Push this folder to the public GitHub repository `wegravel/glp1-mcp`.
+1. Push this folder to the public GitHub repository `wegravel/glp1.health-mcp`.
 2. Run `claude plugin validate --strict .`.
 3. Portal → **Submit new** → **Plugin**, with the repository URL.
 4. Submit the server as a connector too (above). The portal pairs the two.
@@ -89,7 +89,7 @@ Anthropic's official marketplace (`claude-plugins-official`) takes no submission
 Without any directory, a Claude Code user installs the plugin from this repository:
 
 ```sh
-claude plugin install glp1-health --marketplace wegravel/glp1-mcp
+claude plugin install glp1-health --marketplace wegravel/glp1.health-mcp
 ```
 
 ## ChatGPT: plugin directory

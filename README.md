@@ -57,10 +57,10 @@ claude mcp add --transport http glp1-health https://www.glp1.health/mcp
 Or install it as a plugin, from the marketplace in this repository:
 
 ```sh
-claude plugin install glp1-health --marketplace wegravel/glp1-mcp
+claude plugin install glp1-health --marketplace wegravel/glp1.health-mcp
 ```
 
-Inside a session: `/plugin install glp1-health --marketplace wegravel/glp1-mcp`.
+Inside a session: `/plugin install glp1-health --marketplace wegravel/glp1.health-mcp`.
 
 ### Cursor
 
