@@ -34,6 +34,8 @@ All tools only read data.
 - A **score** runs from 0 to 10. Higher is better. Each answer says what each part counts for.
 - A **price** is monthly, in US dollars, with any membership fee in. It is what a reader pays today: a sale on every payment counts while it is live, and an introductory price only for the payments it covers.
 - Each lowest price names its plan. A plan without the drug gives the program's fee and the maker's price apart.
+- A price that includes a live sale carries the tag the page shows: "Sale price, seen Nov 3, 2026".
+- `partner_link` is true when glp1.health earns a commission from the program. glp1.health reviews programs with and without one. Commission never changes the order or the scores.
 - **Compounded GLP-1s** are not FDA-approved: the FDA doesn't review their safety, effectiveness or quality before they're sold. They are not the same product as Wegovy or Zepbound.
 - glp1.health gives no medical advice. Talk to a licensed clinician about any medication decision.
 - glp1.health earns referral fees from some programs. A fee does not change a score or a rank. See the [affiliate disclosure](https://www.glp1.health/affiliate-disclosure).
